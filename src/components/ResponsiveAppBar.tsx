@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Library', 'Framework', 'Video', 'Document']; // Updated page names
+const pages = ['Libraries', 'Frameworks', 'Videos', 'Documents']; // Updated page names
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
