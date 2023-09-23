@@ -1,7 +1,15 @@
-import { Link, useLoaderData, Form } from "react-router-dom";
-
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { deleteAction } from '../actions';  
 function Show(props) {
   const post = useLoaderData();
+  const navigate = useNavigate();  
+
+  const handleDelete = async () => {
+    const success = await deleteAction({ params: { id: post.id } });
+    if (success) {
+      navigate('/');
+    }
+  };
 
   const div = {
     textAlign: "center",
@@ -16,7 +24,7 @@ function Show(props) {
       <h2>{post.description}</h2>
       <div style={{ textAlign: "center" }}>
         <h2>Update</h2>
-        <Form method="post" action={`/update/${post.id}`}>
+        <form method="post" action={`/update/${post.id}`}>
           <input
             type="text"
             name="name"
@@ -36,11 +44,9 @@ function Show(props) {
             defaultValue={post.description}
           />
           <button>Done</button>
-        </Form>
-        
-        <Form method="post" action={`/delete/${post.id}`}>
-          <button>Delete Entry</button>
-        </Form>
+        </form>
+
+        <button onClick={handleDelete}>Delete Entry</button>
 
       </div>
       <Link to="/">Back</Link>

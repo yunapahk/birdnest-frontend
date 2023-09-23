@@ -1,9 +1,8 @@
 import url from "./url";
 
 export const createAction = async ({ request }) => {
-  const formData = request.formData; // Assuming formData is passed as an object
+  const formData = request.formData; 
   
-  // Construct the body for our API call
   const newBirdnest = {
     name: formData.get("name"),
     category: formData.get("category"),
