@@ -29,7 +29,7 @@ function Create() {
   
 
   return (
-    <div style={{ textAlign: 'center', marginBottom: '2em' }}>
+    <div style={{ textAlign: 'center', marginBottom: '2em', marginTop: '8rem' }}>
       <h2>Create New Entry</h2>
       <form onSubmit={handleSubmit}>
         <Stack spacing={2} direction="column" sx={{ width: '100%', maxWidth: 400, margin: 'auto' }}>
