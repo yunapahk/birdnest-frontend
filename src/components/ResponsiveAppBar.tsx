@@ -11,9 +11,13 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
+interface Props {
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+}
+
 const pages = ['Libraries', 'Frameworks', 'Videos', 'Documents'];
 
-function ResponsiveAppBar() {
+const ResponsiveAppBar: React.FC<Props> = ({ setSelectedCategory }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -31,8 +35,8 @@ function ResponsiveAppBar() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {pages.map((text, index) => (
-          <ListItem button key={text}>
+        {pages.map((text) => (
+          <ListItem button key={text} onClick={() => setSelectedCategory(text)}>
             <Typography textAlign="center" sx={{ fontSize: '1.5rem' }}>
               {text}
             </Typography>
@@ -55,7 +59,7 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: 'center', pl: 8 }}>
             {pages.map((page) => (
-              <Button key={page} sx={{ my: 2, mx: 2, color: 'white', fontSize: '1.5rem' }}>
+              <Button key={page} onClick={() => setSelectedCategory(page)} sx={{ my: 2, mx: 2, color: 'white', fontSize: '1.5rem' }}>
                 {page}
               </Button>
             ))}
@@ -72,14 +76,14 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', sm: 'none' } }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={toggleDrawer(true)}
-          >
-            <span role="img" aria-label="hamburger" style={{ fontSize: '1.5rem' }}>🍔</span>
-          </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={toggleDrawer(true)}
+            >
+              <span role="img" aria-label="hamburger" style={{ fontSize: '1.5rem' }}>🍔</span>
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

@@ -1,40 +1,24 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';  // <-- Added
+import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { createAction } from '../actions'; // Import createAction
 
 function Create() {
-  const navigate = useNavigate();  // <-- Added
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    
-    const newBirdnest = {
-      name: formData.get("name"),
-      category: formData.get("category"),
-      description: formData.get("description"),
-    };
-  
-    console.log("FormData: ", newBirdnest);
+    const formData = new FormData(event.currentTarget);
   
     try {
-      const response = await fetch('https://birdnest-backend-bc7d.onrender.com/api/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newBirdnest),
-      });
-  
-      const responseData = await response.json();
-      console.log("Server Response: ", responseData);
-  
-      if (response.ok) {
-        console.log('New entry created.');
-        navigate('/');
+      // Call the createAction function from actions.js
+      const redirectUrl = await createAction({ request: { formData } });
+      
+      if (redirectUrl) {
+        navigate(redirectUrl);  // Make sure this line is actually called
       } else {
         console.log('Failed to create new entry.');
       }
@@ -46,27 +30,21 @@ function Create() {
 
   return (
     <div style={{ textAlign: 'center', marginBottom: '2em' }}>
-      <h2>Create New</h2>
+      <h2>Create New Entry</h2>
       <form onSubmit={handleSubmit}>
-      <Stack spacing={2} direction="column" sx={{ width: '100%', maxWidth: 400, margin: 'auto' }}>
+        <Stack spacing={2} direction="column" sx={{ width: '100%', maxWidth: 400, margin: 'auto' }}>
           <TextField name="name" label="Name" variant="outlined" fullWidth />
           <Autocomplete
             id="category-select"
             options={['Library', 'Framework', 'Video', 'Document']}
             renderInput={(params) => (
-              <TextField {...params} label="Category" variant="outlined" fullWidth />
+              <TextField {...params} label="Category" variant="outlined" fullWidth name="category" />
             )}
-            name="category"
             fullWidth
           />
-          <TextField
-            name="description"
-            label="Description"
-            variant="outlined"
-            fullWidth
-          />
+          <TextField name="description" label="Description" variant="outlined" fullWidth />
           <Button type="submit" variant="contained" color="primary">
-            Create New
+            Done
           </Button>
         </Stack>
       </form>

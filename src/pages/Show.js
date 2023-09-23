@@ -5,7 +5,6 @@ function Show(props) {
 
   const div = {
     textAlign: "center",
-    border: "3px solid blue",
     width: "80%",
     margin: "30px auto",
   };
@@ -36,11 +35,11 @@ function Show(props) {
             placeholder="description"
             defaultValue={post.description}
           />
-          <button>Update</button>
+          <button>Done</button>
         </Form>
         
         <Form method="post" action={`/delete/${post.id}`}>
-          <button>Delete Todo</button>
+          <button>Delete Entry</button>
         </Form>
 
       </div>
