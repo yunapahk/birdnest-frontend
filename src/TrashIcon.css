@@ -1,0 +1,76 @@
+.trash-box {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.trash-box .trash-top,
+.trash-box .trash-btm,
+.trash-box .trash {
+  transition: all 0.2s ease-in-out;
+}
+
+.trash-box:hover .trash-top {
+  transform: translate(-50%, -15%) rotate(-20deg);
+}
+
+.trash-box:hover .trash-btm {
+  transform: translate(-50%, -100%) rotate(5deg);
+}
+
+.trash-box:hover .trash {
+  top: 50%;
+  transform: translate(-42%, -50%) rotate(35deg);
+}
+
+.trash-box .trash-top {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  width: 80%;
+  height: 15%;
+  background: rgb(105, 106, 108);
+  border-radius: 5px;
+  transform-origin: left bottom;
+}
+
+.trash-box .trash-top::before {
+  content: "";
+  position: absolute;
+  bottom: 95%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 30%;
+  height: 80%;
+  background: inherit;
+  border-radius: 5px 5px 0 0;
+}
+
+.trash-box .trash-btm {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 70%;
+  height: 65%;
+  background: rgb(105, 106, 108);
+  border-radius: 5px;
+  transform-origin: left 70%;
+}
+
+.trash-box .trash-btm .trash-lines {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+
+

@@ -1,6 +1,9 @@
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { deleteAction } from '../actions';  
+import '../TrashIcon.css'
+
 function Show(props) {
+
   const post = useLoaderData();
   const navigate = useNavigate();  
 
@@ -17,39 +20,63 @@ function Show(props) {
     margin: "30px auto",
   };
 
+  const formContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '10px'
+  };
+
+  const updateButtonStyle = {
+    backgroundColor: '#007BFF', 
+    padding: '5px 20px 40px 20px',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer'
+  };
+
   return (
     <div style={div}>
       <h1>{post.name}</h1>
-      <h2>{post.category}</h2>
-      <h2>{post.description}</h2>
+      <h2>Category: {post.category}</h2>
+      <h2>Description: {post.description}</h2>
       <div style={{ textAlign: "center" }}>
-        <h2>Update</h2>
-        <form method="post" action={`/update/${post.id}`}>
+        <form method="post" action={`/update/${post.id}`} style={formContainerStyle}>
           <input
+            style={{ width: '200px' }}
             type="text"
             name="name"
             placeholder="name"
             defaultValue={post.name}
           />
-          <select name="category" defaultValue={post.category}>
-            <option value="Library">Library</option>
-            <option value="Framework">Framework</option>
-            <option value="Video">Video</option>
-            <option value="Document">Document</option>
+          <select 
+            style={{ width: '200px' }}
+            name="category" 
+            defaultValue={post.category}
+          >
+            {/* ... options */}
           </select>
           <input
+            style={{ width: '200px' }}
             type="text"
             name="description"
             placeholder="description"
             defaultValue={post.description}
           />
-          <button>Done</button>
+          <button style={updateButtonStyle}>Update</button>
         </form>
-
-        <button onClick={handleDelete}>Delete Entry</button>
-
+        
+        <div onClick={handleDelete} className="trash-box">
+          <div className="trash"></div>
+          <div className="trash-top"></div>
+          <div className="trash-btm">
+            <div className="trash-lines">
+              <div className="trash-line"></div>
+              <div className="trash-line"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <Link to="/">Back</Link>
     </div>
   );
 }
