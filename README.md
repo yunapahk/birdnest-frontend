@@ -1,7 +1,7 @@
 # BirdNest
 - [Deployed Frontend](https://birdnest-jade.vercel.app/)
 - [Deployed Backend](https://birdnest-backend-bc7d.onrender.com) 
-- [Trello Board](https://trello.com/b/4JSumEwy/birdnest](https://trello.com/invite/b/4JSumEwy/ATTI5d5ab6e236ea500a2efadf2cfb3c4e15DAA9D443/birdnest)
+- [Trello Board](https://trello.com/invite/b/4JSumEwy/ATTI5d5ab6e236ea500a2efadf2cfb3c4e15DAA9D443/birdnest)
 
 ## Description
 - Comfortable bird's nest for developers to for resources based on libraries, frameworks, videos, and documentation.
