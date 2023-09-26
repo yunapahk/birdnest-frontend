@@ -34,7 +34,7 @@ export function AppProvider({ children }) {
     );
   }, [selectedCategory, allPosts]);
 
-  console.log("Context", { loading, selectedCategory, filteredPosts, fetchPosts })
+  // console.log("Context", { loading, selectedCategory, filteredPosts, fetchPosts })
   return (
     <AppContext.Provider value={{ loading, selectedCategory, setSelectedCategory, filteredPosts, fetchPosts }}>
       {children}
