@@ -1,8 +1,9 @@
 import url from "./url";
 
 export const createAction = async ({ request }) => {
-  const formData = request.formData; 
+  const formData = request.formData; // Assuming formData is passed as an object
   
+
   const newBirdnest = {
     name: formData.get("name"),
     category: formData.get("category"),
@@ -30,14 +31,9 @@ export const createAction = async ({ request }) => {
   }
 };
 
-export const updateAction = async({request, params}) => {
+export const updateAction = async({params}) => {
   const id = params.id;
-  const formData = await request.formData();
-  const updatedBirdnest = {
-    name: formData.get("name"),
-    category: formData.get("category"),
-    description: formData.get("description"),
-  };
+  const updatedBirdnest = params.updatedBirdnest;
 
   try {
     await fetch(url + id, {
@@ -53,6 +49,8 @@ export const updateAction = async({request, params}) => {
     return null;
   }
 }
+
+
 
 export const deleteAction = async({params}) => {
   const id = params.id;

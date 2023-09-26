@@ -10,17 +10,20 @@ import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import { useAppContext } from '../AppContext.js'; 
 
-interface Props {
-  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
-}
+const pages = ['All', 'Library', 'Framework', 'Video', 'Document'];
 
-const pages = ['Libraries', 'Frameworks', 'Videos', 'Documents'];
-
-const ResponsiveAppBar: React.FC<Props> = ({ setSelectedCategory }) => {
+function ResponsiveAppBar() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  
+  const { setSelectedCategory } = useAppContext();
 
-  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
       return;
     }
@@ -35,8 +38,8 @@ const ResponsiveAppBar: React.FC<Props> = ({ setSelectedCategory }) => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {pages.map((text) => (
-          <ListItem button key={text} onClick={() => setSelectedCategory(text)}>
+        {pages.map((text, index) => (
+          <ListItem button key={text} onClick={() => handleCategoryClick(text)}>
             <Typography textAlign="center" sx={{ fontSize: '1.5rem' }}>
               {text}
             </Typography>
@@ -59,12 +62,15 @@ const ResponsiveAppBar: React.FC<Props> = ({ setSelectedCategory }) => {
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: 'center', pl: 8 }}>
             {pages.map((page) => (
-              <Button key={page} onClick={() => setSelectedCategory(page)} sx={{ my: 2, mx: 2, color: 'white', fontSize: '1.5rem' }}>
+              <Button 
+                key={page} 
+                sx={{ my: 2, mx: 2, color: 'white', fontSize: '1.5rem' }}
+                onClick={() => handleCategoryClick(page)}
+              >
                 {page}
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0, display: { xs: 'none', sm: 'flex' } }}>
             <Link to="/create" style={{ textDecoration: 'none' }}>
               <Button variant="contained" color="primary" sx={{ ml: 2, p: 1 }}>
@@ -74,7 +80,6 @@ const ResponsiveAppBar: React.FC<Props> = ({ setSelectedCategory }) => {
               </Button>
             </Link>
           </Box>
-
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', sm: 'none' } }}>
             <IconButton
               color="inherit"
@@ -87,7 +92,6 @@ const ResponsiveAppBar: React.FC<Props> = ({ setSelectedCategory }) => {
           </Box>
         </Toolbar>
       </Container>
-
       <Drawer
         anchor="left"
         open={drawerOpen}

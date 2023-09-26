@@ -22,8 +22,6 @@ export function AppProvider({ children }) {
     }
   };
   
-
-  // Initial fetch
   useEffect(() => {
     fetchPosts();
   }, []);
