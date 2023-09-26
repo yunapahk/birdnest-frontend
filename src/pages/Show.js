@@ -1,9 +1,13 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import * as React from 'react';
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { deleteAction } from '../actions';  
-import '../TrashIcon.css'
+import '../TrashIcon.css';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 function Show(props) {
-
   const post = useLoaderData();
   const navigate = useNavigate();  
 
@@ -14,57 +18,46 @@ function Show(props) {
     }
   };
 
-  const div = {
-    textAlign: "center",
-    width: "80%",
-    margin: "30px auto",
-  };
-
-  const formContainerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '10px'
-  };
-
-  const updateButtonStyle = {
-    backgroundColor: '#007BFF', 
-    padding: '5px 20px 40px 20px',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer'
-  };
-
   return (
-    <div style={div}>
+    <div style={{ textAlign: 'center', marginBottom: '2em', marginTop: '2em' }}>
       <h1>{post.name}</h1>
       <h2>Category: {post.category}</h2>
       <h2>Description: {post.description}</h2>
-      <div style={{ textAlign: "center" }}>
-        <form method="post" action={`/update/${post.id}`} style={formContainerStyle}>
-          <input
-            style={{ width: '200px' }}
-            type="text"
+
+      <form method="post" action={`update/${post.id}`}>
+        <Stack spacing={2} direction="column" sx={{ width: '100%', maxWidth: 400, margin: 'auto' }}>
+          <TextField
             name="name"
-            placeholder="name"
+            label="Name"
+            variant="outlined"
+            fullWidth
             defaultValue={post.name}
           />
-          <select 
-            style={{ width: '200px' }}
-            name="category" 
+          <Autocomplete
+            id="category-select"
+            options={['Library', 'Framework', 'Video', 'Documentation']}
             defaultValue={post.category}
-          >
-            {/* ... options */}
-          </select>
-          <input
-            style={{ width: '200px' }}
-            type="text"
+            renderInput={(params) => (
+              <TextField {...params} label="Category" variant="outlined" fullWidth name="category" />
+            )}
+            sx={{
+              '& .MuiAutocomplete-option': {
+                fontSize: '1.5rem',
+              }
+            }}
+          />
+          <TextField
             name="description"
-            placeholder="description"
+            label="Description"
+            variant="outlined"
+            fullWidth
             defaultValue={post.description}
           />
-          <button style={updateButtonStyle}>Update</button>
-        </form>
+          <Button type="submit" variant="contained" color="primary" style={{ padding: '5px 20px' }}>
+            Update
+          </Button>
+        </Stack>
+      </form>
         
         <div onClick={handleDelete} className="trash-box">
           <div className="trash"></div>
@@ -77,7 +70,6 @@ function Show(props) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

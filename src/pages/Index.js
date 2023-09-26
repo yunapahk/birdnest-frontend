@@ -1,22 +1,19 @@
 import React from 'react';
 import Post from '../components/Post';
-import { useLoaderData } from 'react-router-dom';  // Removed Form import
+import { useAppContext } from '../AppContext.js';
 import Grid from '@mui/material/Grid';
 
-function Index(props) {
-  const birdnests = useLoaderData();
+function Index() {
+  const { filteredPosts } = useAppContext();
 
   return (
-    <>
-      {/* Removed the entire div containing the form */}
-      <Grid container spacing={3}>
-        {birdnests.map((birdnest) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={birdnest.id}>
-            <Post post={birdnest} />
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <Grid container spacing={3}>
+      {filteredPosts.map((birdnest) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={birdnest.id}>
+          <Post post={birdnest} />
+        </Grid>
+      ))}
+    </Grid>
   );
 }
 
