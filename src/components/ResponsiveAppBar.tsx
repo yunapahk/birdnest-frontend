@@ -57,24 +57,24 @@ function ResponsiveAppBar() {
   );
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" sx={{ overflowX: 'hidden' }}>
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
           <Box 
-          sx={{ 
-             flexGrow: 1, 
-             display: { xs: 'none', sm: 'flex' }, 
-             justifyContent: 'center', 
-             pl: 8 
-          }}>
+            sx={{ 
+               flexGrow: 1, 
+               display: { xs: 'none', sm: 'flex' }, 
+               justifyContent: 'center', 
+               pl: 8 
+            }}>
             {pages.map((page) => (
               <Button 
                 key={page} 
                 sx={{ 
-                  my: 2, 
-                  mx: 2, 
+                  my: 1, 
+                  mx: 1, 
                   color: 'white', 
-                  fontSize: { xs: '2rem', sm: '1.5rem' }
+                  fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.5rem', lg: '1.5rem' }
                 }}
                 onClick={() => handleCategoryClick(page)}
               >
@@ -90,7 +90,11 @@ function ResponsiveAppBar() {
             }}>
             <Link to="/create" style={{ textDecoration: 'none' }}>
               <Button variant="contained" color="primary" sx={{ ml: 2, p: 1 }}>
-                <Typography variant="h3" component="span" sx={{ fontSize: '2rem' }}>
+                <Typography 
+                  variant="h3" 
+                  component="span" 
+                  sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem', lg: '2rem' } }}
+                >
                   +
                 </Typography>
               </Button>
@@ -117,7 +121,7 @@ function ResponsiveAppBar() {
         {list()}
       </Drawer>
     </AppBar>
-  );
+);
 }
 
 export default ResponsiveAppBar;
