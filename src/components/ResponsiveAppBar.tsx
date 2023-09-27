@@ -60,18 +60,34 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: 'center', pl: 8 }}>
+          <Box 
+          sx={{ 
+             flexGrow: 1, 
+             display: { xs: 'none', sm: 'flex' }, 
+             justifyContent: 'center', 
+             pl: 8 
+          }}>
             {pages.map((page) => (
               <Button 
                 key={page} 
-                sx={{ my: 2, mx: 2, color: 'white', fontSize: '1.5rem' }}
+                sx={{ 
+                  my: 2, 
+                  mx: 2, 
+                  color: 'white', 
+                  fontSize: { xs: '2rem', sm: '1.5rem' }
+                }}
                 onClick={() => handleCategoryClick(page)}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0, display: { xs: 'none', sm: 'flex' } }}>
+
+          <Box 
+            sx={{ 
+              flexGrow: 0, 
+              display: { xs: 'none', sm: 'flex' } 
+            }}>
             <Link to="/create" style={{ textDecoration: 'none' }}>
               <Button variant="contained" color="primary" sx={{ ml: 2, p: 1 }}>
                 <Typography variant="h3" component="span" sx={{ fontSize: '2rem' }}>
@@ -80,6 +96,7 @@ function ResponsiveAppBar() {
               </Button>
             </Link>
           </Box>
+          
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', sm: 'none' } }}>
             <IconButton
               color="inherit"
@@ -87,7 +104,7 @@ function ResponsiveAppBar() {
               edge="end"
               onClick={toggleDrawer(true)}
             >
-              <span role="img" aria-label="hamburger" style={{ fontSize: '1.5rem' }}>🍔</span>
+              <span role="img" aria-label="hamburger" style={{ fontSize: '2rem' }}>🍔</span>
             </IconButton>
           </Box>
         </Toolbar>

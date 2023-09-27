@@ -2,6 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import OpenInNewOutlinedIcon from '@mui/icons-material/OpenInNewOutlined';
 
 function Post({ post }) {
   return (
@@ -27,7 +28,11 @@ function Post({ post }) {
           sx={{ mb: 1.5, textAlign: 'center' }} 
           color="text.secondary"
         >
-          {post.description}
+         { 
+            post.category === 'Document' 
+              ? <a href={post.description} target="_blank" rel="noopener noreferrer"><OpenInNewOutlinedIcon sx={{ fontSize: '20px', mt:1 }} /></a> 
+              : post.description 
+         }
         </Typography>
       </CardContent>
     </Card>
