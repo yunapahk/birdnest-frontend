@@ -10,7 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { useAppContext } from '../AppContext.js'; 
+import HomeIcon from '@mui/icons-material/Home'; 
+import { useAppContext } from '../AppContext.js';
 
 const pages = ['All', 'Library', 'Framework', 'Video', 'Document'];
 
@@ -24,7 +25,7 @@ function ResponsiveAppBar() {
   };
 
   const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
+    if (event.type === 'keydown' && ((event as any).key === 'Tab' || (event as any).key === 'Shift')) {
       return;
     }
     setDrawerOpen(open);
@@ -38,6 +39,9 @@ function ResponsiveAppBar() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
+        <ListItem button component={Link} to="/">
+        <HomeIcon sx={{ color: 'gray' }} />
+        </ListItem>
         {pages.map((text, index) => (
           <ListItem button key={text} onClick={() => handleCategoryClick(text)}>
             <Typography textAlign="center" sx={{ fontSize: '1.5rem' }}>
@@ -60,6 +64,9 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ overflowX: 'hidden' }}>
       <Container maxWidth={false}>
         <Toolbar disableGutters>
+          <Box sx={{ flexGrow: 0, display: { xs: 'flex', sm: 'flex' } }}> 
+            <Button component={Link} to="/" startIcon={<HomeIcon sx={{ color: 'white' }} />}/>
+          </Box>
           <Box 
             sx={{ 
                flexGrow: 1, 
@@ -82,7 +89,6 @@ function ResponsiveAppBar() {
               </Button>
             ))} 
           </Box>
-
           <Box 
             sx={{ 
               flexGrow: 0, 
@@ -100,7 +106,6 @@ function ResponsiveAppBar() {
               </Button>
             </Link>
           </Box>
-          
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', sm: 'none' } }}>
             <IconButton
               color="inherit"
@@ -121,7 +126,7 @@ function ResponsiveAppBar() {
         {list()}
       </Drawer>
     </AppBar>
-);
+  );
 }
 
 export default ResponsiveAppBar;

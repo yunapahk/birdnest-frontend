@@ -11,7 +11,7 @@ function Post({ post }) {
     <Card sx={{ minWidth: 275, margin: '18px' }}>
       <CardContent>
         <Typography 
-          sx={{ fontSize: 14, textAlign: 'center' }} 
+          sx={{ fontSize: 16, textAlign: 'center' }} 
           color="text.secondary" 
           gutterBottom
         >
@@ -27,7 +27,7 @@ function Post({ post }) {
           </Typography>
         </Link>
         <Typography 
-          sx={{ mb: 1, textAlign: 'center' }} 
+          sx={{ mb: 1, textAlign: 'center', fontSize: '14px' }} 
           color="text.secondary"
         >
        {

@@ -37,7 +37,7 @@ function Index() {
           page={currentPage} 
           onChange={handlePageChange} 
           size="large" 
-          sx={{ fontSize: '1.5rem' }} 
+          sx={{ fontSize: '3.5rem' }} 
         />
       </Box>
     </>
