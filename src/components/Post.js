@@ -8,7 +8,7 @@ import OpenInNewOutlinedIcon from '@mui/icons-material/OpenInNewOutlined';
 function Post({ post }) {
 
   return (
-    <Card sx={{ minWidth: 275, margin: '20px' }}>
+    <Card sx={{ minWidth: 275, margin: '18px' }}>
       <CardContent>
         <Typography 
           sx={{ fontSize: 14, textAlign: 'center' }} 
@@ -27,14 +27,14 @@ function Post({ post }) {
           </Typography>
         </Link>
         <Typography 
-          sx={{ mb: 1.5, textAlign: 'center' }} 
+          sx={{ mb: 1, textAlign: 'center' }} 
           color="text.secondary"
         >
        {
           post.category === 'Video' 
             ? (
                 <a href={post.description} target="_blank" rel="noopener noreferrer">
-                  <OpenInNewOutlinedIcon sx={{ fontSize: '20px', mt: 1 }} />
+                  <OpenInNewOutlinedIcon sx={{ fontSize: '20px', mt: 1}} />
                 </a>
               )
             : post.category === 'Document' 
