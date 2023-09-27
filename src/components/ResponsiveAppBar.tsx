@@ -80,7 +80,7 @@ function ResponsiveAppBar() {
               >
                 {page}
               </Button>
-            ))}
+            ))} 
           </Box>
 
           <Box 
