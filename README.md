@@ -18,11 +18,11 @@ _Create/Update_
 ## Endpoints
 | Method | Route            | Description               |
 |--------|------------------|---------------------------|
-| GET    | /api/entries   | Retrieve all entries   |
-| POST   | /api/entries      | Add a new entry         | 
-| GET    | /api/entries/:id   | Retrieve a entry by ID    | 
-| PUT    | /api/entries/:id   | Update a entry by ID      |
-| DELETE | /api/entries/:id   | Delete a entry by ID      | 
+| GET    | /api/birdnests   | Retrieve all entries   |
+| POST   | /api/birdnests      | Add a new entry         | 
+| GET    | /api/birdnests/:id   | Retrieve a entry by ID    | 
+| PUT    | /api/birdnests/:id   | Update a entry by ID      |
+| DELETE | /api/birdnests/:id   | Delete a entry by ID      | 
 
 ## ERD 
 ```mermaid
