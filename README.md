@@ -6,6 +6,16 @@
 ## Description
 - Comfortable bird's nest for developers to for resources based on libraries, frameworks, videos, and documentation.
 
+## Screenshots
+_Index_
+![Index](index.png)
+
+_Create_
+![Create](create.png)
+
+_Show_
+![Show](show.png)
+
 ## UI Mock Up
 _Dashboard_
 
